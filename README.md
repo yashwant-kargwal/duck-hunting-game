@@ -9,7 +9,7 @@ A simple and engaging duck hunting game built using HTML, CSS, and JavaScript. T
 - Developed using HTML, CSS, and JavaScript.
 
 ## How to Play:
-1. Launch the game in your browser. Click Here To Play Game Online!
+1. Launch the game in your browser. [Click Here To Play Game Online!](https://yashwant-kargwal.github.io/duck-hunting-game/)
 2. Use your mouse to aim and shoot at the ducks.
 3. Try to hit as many ducks as you can to score points.
 
