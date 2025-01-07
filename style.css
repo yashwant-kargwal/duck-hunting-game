@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    width: 100vw;
+    display: block;
+    overflow: hidden;
+    cursor: url('assets/img/aim.png'), text;
+}
+body::before{
+    content: '';
+    display: block;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    background: url(assets/img/duck-hunting-background.jpg) repeat-x bottom left;
+}
+.bird{
+    display: none;
+}
+label{
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-image: url(assets/img/bird-left.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: url(assets/img/aim.png), text;
+}
+.bird:checked + label{
+    width: 50px;
+    height: 50px;
+    background-image: url(assets/img/bird-die.png);
+    transform-origin: 60%;
+    transition: 1s all;
+    z-index: -5;
+}
