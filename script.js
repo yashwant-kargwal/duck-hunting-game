@@ -3,6 +3,7 @@ let body = document.querySelector("body");
 let birdsBox = document.querySelector(".birdsCallHere");
 const gunSound = new Audio("assets/sound/pubg-kar98k-45335.mp3");
 let score = document.querySelector(".score");
+let hiSc = document.querySelector(".hiSc");
 
 
 // body click on/off
@@ -26,6 +27,7 @@ body.addEventListener("click", () => {
 let num = 1;
 let gameRunning = true;
 let scoreVal = 0;
+let highScore = hiSc.innerText;
 
 
 // function to get numberwise birds
@@ -44,6 +46,25 @@ function stopGame() {
     alert("Game Over! Birds escaped.");
     location.reload();
 }
+
+// function to save high score 
+function saveScore(){
+    if(highScore < scoreVal){
+        localStorage.setItem("hiScore",scoreVal);
+    }
+}
+
+// function to get High Score 
+function getScore(){
+    let highscore = localStorage.getItem("hiScore")
+    return highscore;
+}
+
+// High Score Update after load window
+window.addEventListener("load", ()=>{
+    highScore = getScore();
+    hiSc.innerText = highScore;
+})
 
 
 // Birds and Animation
@@ -121,10 +142,11 @@ birdsBox.addEventListener("click", (event) => {
         label.style.animation = "none";
 
         label.style.backgroundImage = "url('assets/img/dieEffect.png')";
-
+        
         scoreVal++;
-
         score.innerText = scoreVal;
+        saveScore();
+
 
         setTimeout(() => {
             label.parentElement.classList.add("finished");
