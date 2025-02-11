@@ -39,14 +39,14 @@ setInterval(()=>{
     if (!gameRunning) return;
 
     let div = document.createElement("div");
-
-
+    div.style.animation = `flyBird${num} 10s linear`;
+    div.classList.add("positionFixed");
 
     let input = document.createElement("input");
     input.type = "checkbox";
     input.id = `bird${num}`;
     input.classList.add("bird");
-    // input.style.animation = `flyBird${num} 10s linear alternate`;
+    input.style.animation = `flyBird${num} 10s linear alternate`;
 
 
     let label = document.createElement("label");
