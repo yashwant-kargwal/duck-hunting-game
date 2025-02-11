@@ -46,13 +46,13 @@ setInterval(()=>{
     input.type = "checkbox";
     input.id = `bird${num}`;
     input.classList.add("bird");
-    input.style.animation = `flyBird${num} 10s linear alternate`;
+    // input.style.animation = `flyBird${num} 10s linear alternate`;
 
 
     let label = document.createElement("label");
     label.setAttribute("for" , `bird${num}`);
     label.classList.add("bird-label");
-    label.style.animation = `flyBird${num} 10s linear alternate`;
+    label.style.animation = `flyBird${num} 10s linear`;
 
 
     let keyframe = `
@@ -95,7 +95,7 @@ birdsBox.addEventListener("click", (event) => {
         let input = label.previousElementSibling;
         input.checked = true;
 
-        label .style.animation = "none";
+        label.style.animation = "none";
 
         label.style.backgroundImage = "url('assets/img/dieEffect.png')";
 
