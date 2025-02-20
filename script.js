@@ -37,7 +37,7 @@ function numPlusPlus(){
 
 // function to get random number 
 function randomNumber(to,from){
-    return Math.floor(Math.random() * (to-from) + from);
+    return Math.floor(Math.random() * (to - from + 1)) + from;
 }
 
 // function to stop the game
@@ -72,60 +72,118 @@ setInterval(()=>{
 
     if (!gameRunning) return;
 
-    // bird tag
-    let div = document.createElement("div");
-    // div.style.animation = `flyBird${num} 10s linear`;
-    // div.classList.add("positionFixed");
+    let birdDir = randomNumber(2,1);
 
-    let input = document.createElement("input");
-    input.type = "checkbox";
-    input.id = `bird${num}`;
-    input.classList.add("bird");
-    // input.style.animation = `flyBird${num} 10s linear alternate`;
+    if(birdDir == 1){
+        // bird tag
+        let div = document.createElement("div");
+    
+    
+        let input = document.createElement("input");
+        input.type = "checkbox";
+        input.id = `bird${num}`;
+        input.classList.add("bird");
+    
+    
+        let label = document.createElement("label");
+        label.setAttribute("for" , `bird${num}`);
+        label.classList.add("bird-label");
+        label.classList.add("bird1");
+        label.style.animation = `flyBird${num} 10s linear`;
+    
+    
+        // genrate random keyframes for every birds
+        let keyframe = `
+            @keyframes flyBird${num} {
+                0%{ top : ${randomNumber(80,10)}%; right : -10%}
+                25%{ top : ${randomNumber(80,10)}%; right : 25%}
+                50%{ top : ${randomNumber(80,10)}%; right : 50%}
+                75%{ top : ${randomNumber(80,10)}%; right : 75%}
+                100%{ top : ${randomNumber(80,10)}%; right : 110%}
+            }
+        `;
+    
+    
+        // insert keyframes in css Stylesheet
+        let styleSheet = document.styleSheets[0];
+        styleSheet.insertRule(keyframe, styleSheet.cssRules.length);
+    
+    
+        // append all created element in html
+        div.append(input);
+        div.append(label);
+        birdsBox.append(div);
 
-
-    let label = document.createElement("label");
-    label.setAttribute("for" , `bird${num}`);
-    label.classList.add("bird-label");
-    label.style.animation = `flyBird${num} 10s linear`;
-
-
-    // genrate random keyframes for every birds
-    let keyframe = `
-        @keyframes flyBird${num} {
-            0%{ top : ${randomNumber(80,10)}%; right : -10%}
-            25%{ top : ${randomNumber(80,10)}%; right : 25%}
-            50%{ top : ${randomNumber(80,10)}%; right : 50%}
-            75%{ top : ${randomNumber(80,10)}%; right : 75%}
-            100%{ top : ${randomNumber(80,10)}%; right : 110%}
-        }
-    `;
-
-    // insert keyframes in css Stylesheet
-    let styleSheet = document.styleSheets[0];
-    styleSheet.insertRule(keyframe, styleSheet.cssRules.length);
-
-
-
-    // append all created element in html
-    div.append(input);
-    div.append(label);
-    birdsBox.append(div);
-
-
-
-    // check if bird came out from screen
-    setTimeout(() => {
+        
+        // check if bird came out from screen
+        setTimeout(() => {
         let computedStyle = window.getComputedStyle(label);
         let birdRight = parseInt(computedStyle.right);
 
         if (birdRight >= window.innerWidth) {
             stopGame();
         }
-    }, 10000);
+        }, 10000);
 
+
+    }
+    else{
+        // bird tag
+        let div = document.createElement("div");
+
+
+        let input = document.createElement("input");
+        input.type = "checkbox";
+        input.id = `bird${num}`;
+        input.classList.add("bird");
+
+
+        let label = document.createElement("label");
+        label.setAttribute("for" , `bird${num}`);
+        label.classList.add("bird-label");
+        label.classList.add("bird2");
+        label.style.animation = `flyBird${num} 10s linear`;
+
+
+        // genrate random keyframes for every birds
+        let keyframe = `
+            @keyframes flyBird${num} {
+                0%{ top : ${randomNumber(80,10)}%; left : -10%}
+                25%{ top : ${randomNumber(80,10)}%; left : 25%}
+                50%{ top : ${randomNumber(80,10)}%; left : 50%}
+                75%{ top : ${randomNumber(80,10)}%; left : 75%}
+                100%{ top : ${randomNumber(80,10)}%; left : 110%}
+            }
+        `;
+
+
+        // insert keyframes in css Stylesheet
+        let styleSheet = document.styleSheets[0];
+        styleSheet.insertRule(keyframe, styleSheet.cssRules.length);
+
+
+        // append all created element in html
+        div.append(input);
+        div.append(label);
+        birdsBox.append(div);
+
+
+        // check if bird came out from screen
+        setTimeout(() => {
+        let computedStyle = window.getComputedStyle(label);
+        let birdLeft = parseInt(computedStyle.left);
+
+        if (birdLeft >= window.innerWidth) {
+            stopGame();
+        }
+        }, 10000);
+
+    }
+
+
+    console.log(birdDir);
     numPlusPlus();
-},3000); // every 3sec
+},5000); // every 5sec
 
 
 // bird kill effect and update scores
@@ -152,4 +210,7 @@ birdsBox.addEventListener("click", (event) => {
             label.parentElement.classList.add("finished");
         }, 1500);
     }
+    // else{
+    //     console.log("Miss");
+    // }
 });

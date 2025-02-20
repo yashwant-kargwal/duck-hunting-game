@@ -32,7 +32,6 @@ body::before{
     display: inline-block;
     width: 70px;
     height: 70px;
-    background-image: url(assets/img/bird1.gif);
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -49,6 +48,14 @@ body::before{
     transition: 1s all;
     animation: none !important;
     z-index: 1;
+}
+
+.bird1{
+    background-image: url(assets/img/bird1.gif);
+}
+
+.bird2{
+    background-image: url(assets/img/bird2.gif);
 }
 
 
@@ -81,4 +88,14 @@ body::before{
     font-size: 2rem;
     display: flex;
     gap: 10px;
+}
+
+.birdsCallHere{
+    width: 100%;
+    height: calc(100% - 70px);
+}
+.birdsCallHere div{
+    position: relative;
+    right: 80px;
+    top: -100px;
 }
