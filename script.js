@@ -181,7 +181,7 @@ setInterval(()=>{
     }
 
 
-    console.log(birdDir);
+    // console.log(birdDir);
     numPlusPlus();
 },5000); // every 5sec
 
